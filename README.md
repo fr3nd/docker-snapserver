@@ -20,7 +20,10 @@ docker run -d \
 
 - `1704` — stream port, what `snapclient`s connect to.
 - `1705` — TCP JSON-RPC control port.
-- `1780` — HTTP control/JSON-RPC and the built-in web UI.
+- `1780` — HTTP control/JSON-RPC and the built-in web UI ([Snapweb](https://github.com/snapcast/snapweb),
+  bundled at build time — Debian's `snapserver` package only ships a
+  placeholder page there, so it's fetched from Snapweb's own releases and
+  extracted over it at the default `doc_root`).
 - `/var/lib/snapserver` is where `server.json` (client/group names, volumes,
   latency) is persisted between restarts — mount a volume there if you want
   that to survive container recreation.

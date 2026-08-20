@@ -1,7 +1,18 @@
 FROM debian:trixie-slim
 
+ENV SNAPWEB_VERSION=0.9.3
+
 RUN apt-get update && DEBIAN_FRONTEND=noninteractive apt-get install -y \
       snapserver \
+      wget \
+      unzip \
+    && \
+    wget -q -O /tmp/snapweb.zip \
+      https://github.com/snapcast/snapweb/releases/download/v${SNAPWEB_VERSION}/snapweb.zip && \
+    unzip -qo /tmp/snapweb.zip -d /usr/share/snapserver/snapweb && \
+    apt-get purge --auto-remove -y \
+      wget \
+      unzip \
     && \
     apt-get clean all && \
     rm -rf /usr/share/doc/* && \
